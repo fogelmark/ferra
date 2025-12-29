@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
-import { murmure } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
+import { murmure } from "@/lib/fonts"
+import { useEffect, useState } from "react"
+import type { Variants } from "motion/react"
 
 const letters = "ferra studio".split("")
 
@@ -19,7 +20,7 @@ export default function LandingPage() {
 		return () => clearTimeout(t)
 	}, [totalDuration])
 
-	const slideIn = {
+	const slideIn: Variants = {
 		initial: (i: number) => ({
 			x: letters[i] === "i" ? "200%" : "100%",
 		}),
@@ -54,7 +55,7 @@ export default function LandingPage() {
 							initial="initial"
 							animate="animate"
 							custom={i}
-							variants={slideIn as any}
+							variants={slideIn}
 						>
 							{letter === " " ? "\u00A0" : letter}
 						</motion.div>
