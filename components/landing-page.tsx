@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
-import { murmure } from "@/lib/fonts"
+import { murmure, leaguegothic } from "@/lib/fonts"
 import { useEffect, useState } from "react"
 import type { Variants } from "motion/react"
 
@@ -37,9 +37,9 @@ export default function LandingPage() {
 	return (
 		<div
 			className={cn(
-				"flex h-screen w-screen items-center justify-center text-[20vw] uppercase transition-colors duration-500",
+				"flex h-screen w-screen items-center justify-center uppercase text-[20vw] transition-colors duration-500",
 				gray ? "bg-gray-background" : "bg-red-primary",
-				murmure.className,
+				leaguegothic.className,
 			)}
 		>
 			{letters.map((letter, i) => {
