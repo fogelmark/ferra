@@ -9,7 +9,6 @@ import { useEffect, useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import bernard from "@/public/images/bernard.jpg"
 import Footer from "@/components/footer/footer"
-import Intro from "@/components/intro/intro"
 
 const subheading = [
 	"We design and build thoughtful digital",
@@ -32,40 +31,46 @@ export default function Home() {
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
-		offset: ["start start", "end end"],
+		offset: ["start end", "end end"],
 	})
 
 	const image = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
-	const headingOne = useTransform(scrollYProgress, [0, 1], ["0px", "-200px"])
-	const headingTwo = useTransform(scrollYProgress, [0, 1], ["0px", "400px"])
-	const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-	const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(5px)"])
-	const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3])
+	const one = useTransform(scrollYProgress, [0, 1], ["0px", "-50px"])
+	const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, 1])
 
 	return (
-		<div ref={containerRef} className="bg-[#211e1f]">
-			<div className="relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] overflow-hidden gap-y-8">
+		<div ref={containerRef} className="bg-gray-background">
+			<div className="relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] gap-y-8 overflow-hidden">
+				<div className="absolute inset-0 overflow-hidden">
+					<motion.img
+						style={{ y: image }}
+						src={bernard.src}
+						className="h-full w-full scale-125 object-cover object-center"
+					/>
+				</div>
+				{/* <motion.div
+					style={{ opacity: overlayOpacity }}
+					className="pointer-events-none absolute inset-0 bg-white"
+				/> */}
 				<div className="relative z-10 col-span-2 col-start-3 self-end pl-4">
 					{slogan.map((line, index) => (
-						<motion.div style={{ y: headingTwo }} key={index}>
+						<motion.div style={{ y: one }} key={index}>
 							<h2 className="text-4xl font-medium">{line}</h2>
 						</motion.div>
 					))}
 				</div>
 
 				<div className="relative col-span-4 self-end">
-					<motion.h1
-					style={{ y: headingOne, opacity, filter: blur }}
+					<h1
 						className={cn(
-							"text-center text-[25.5vw] select-none text-[#d9d7cb] leading-[80%] whitespace-nowrap uppercase",
+							"text-center text-[25.5vw] leading-[80%] whitespace-nowrap uppercase",
 							leaguegothic.className,
 						)}
 					>
 						ferra studio
-					</motion.h1>
+					</h1>
 				</div>
 			</div>
-			<Intro />
 			<Footer />
 		</div>
 	)
