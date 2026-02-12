@@ -7,16 +7,16 @@ import { cn } from "@/lib/utils"
 import Lenis from "lenis"
 import { useEffect, useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-import bernard from "@/public/images/bernard.jpg"
 import Footer from "@/components/footer/footer"
 import Intro from "@/components/intro/intro"
+import Section from "@/components/section/section"
 
 const subheading = [
 	"We design and build thoughtful digital",
 	"experiences for brands and businesses.",
 ]
 
-const slogan = ["Elevate your digital presence."]
+// const slogan = ["Elevate your digital presence."]
 
 export default function Home() {
 	useEffect(() => {
@@ -36,28 +36,36 @@ export default function Home() {
 	})
 
 	const image = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
-	const headingOne = useTransform(scrollYProgress, [0, 1], ["0px", "-200px"])
+	const headingOne = useTransform(scrollYProgress, [0, 1], ["0px", "-600px"])
 	const headingTwo = useTransform(scrollYProgress, [0, 1], ["0px", "400px"])
-	const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-	const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(5px)"])
+	const opacity = useTransform(scrollYProgress, [0, 0.3], [1, 0])
+	const blur = useTransform(
+		scrollYProgress,
+		[0, 1],
+		["blur(0px)", "blur(5px)"],
+	)
 	const scale = useTransform(scrollYProgress, [0, 1], [1, 1.3])
 
 	return (
-		<div ref={containerRef} className="bg-[#211e1f]">
-			<div className="relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] overflow-hidden gap-y-8">
+		<div ref={containerRef} className="bg-ash-gray">
+			{/* <div className="relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] bg-[url(/images/water-full.jpg)] bg-cover bg-center overflow-hidden gap-y-8"> */}
+			<div className="text-bone-white relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] gap-y-8">
 				<div className="relative z-10 col-span-2 col-start-3 self-end pl-4">
-					{slogan.map((line, index) => (
-						<motion.div style={{ y: headingTwo }} key={index}>
-							<h2 className="text-4xl font-medium">{line}</h2>
-						</motion.div>
-					))}
+					<motion.div style={{ y: headingTwo }}>
+						<h2 className="text-4xl font-medium">
+							Elevate your{" "}
+							<span className="text-red-secondary">
+								digital presence.
+							</span>
+						</h2>
+					</motion.div>
 				</div>
 
 				<div className="relative col-span-4 self-end">
 					<motion.h1
-					style={{ y: headingOne, opacity, filter: blur }}
+						style={{ y: headingOne, opacity }}
 						className={cn(
-							"text-center text-[25.5vw] select-none text-[#d9d7cb] leading-[80%] whitespace-nowrap uppercase",
+							"text-center text-[25.5vw] leading-[80%] whitespace-nowrap uppercase select-none",
 							leaguegothic.className,
 						)}
 					>
@@ -66,6 +74,7 @@ export default function Home() {
 				</div>
 			</div>
 			<Intro />
+			<Section />
 			<Footer />
 		</div>
 	)

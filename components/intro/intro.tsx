@@ -2,7 +2,7 @@ import React from "react"
 
 export default function Intro() {
 	return (
-		<section className="grid h-screen grid-cols-12 grid-rows-12 px-12">
+		<section className="grid h-[150vh] grid-cols-12 grid-rows-12 px-12">
 			<div className="col-span-4 col-start-1 row-start-4">
 				<p className="text-lg leading-tight">
 					Specializing in brand identity, motion design, and websites.

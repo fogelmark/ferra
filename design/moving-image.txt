@@ -1,0 +1,7 @@
+				<div className="overflow-hidden grayscale">
+					<motion.img
+						style={{ y: image }}
+						src={lotta.src}
+						className="h-full w-full scale-125 object-contain object-center"
+					/>
+				</div>
