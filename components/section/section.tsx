@@ -28,7 +28,7 @@ export default function Section() {
 				</h2>
 			</div>
 			<div className="text-red-secondary col-start-8 row-start-9 col-span-4 leading-8 z-10 font-medium text-2xl">
-				<h3>
+				<h3 className="leading-tight">
 					Social platforms limit your reach. A dedicated website
 					ensures you own the connection, the data, and the revenue.
 				</h3>

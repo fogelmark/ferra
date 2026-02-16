@@ -1,6 +1,8 @@
 import { inter, leaguegothic, sentient } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import ButtonCtaHeader from "../buttons/button-cta-header"
+import logo from "@/public/images/logo.png"
+import Image from "next/image"
 
 const navItems = [
 	{ label: "projects", href: "#" },

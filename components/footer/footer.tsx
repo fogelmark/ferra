@@ -16,7 +16,7 @@ export default function Footer() {
 	return (
 		<div
 			ref={containerRef}
-			className="relative h-[700px] bg-[#d9d7cb]"
+			className="relative h-[700px] bg-white"
 			style={{
 				clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
 			}}
@@ -27,8 +27,8 @@ export default function Footer() {
 						style={{ y }}
 						className="relative flex h-full w-full items-center justify-center px-4 py-8"
 					>
-						<h1 className="text-8xl text-[#211e1f]">
-							HEJ
+						<h1 className="text-8xl text-ash-gray">
+							FOOTER
 						</h1>
 					</motion.div>
 				</div>

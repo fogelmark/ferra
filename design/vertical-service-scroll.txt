@@ -1,0 +1,105 @@
+"use client"
+
+import { motion, useScroll, useTransform } from "motion/react"
+import { useRef } from "react"
+
+const slides = [
+  // {
+  //   title: "Form Meets Function.",
+  //   subtitle: "We combine intentional design with modern technology.",
+  // },
+  {
+    title: "Web Design & Development.",
+    subtitle: "We build fast, fluid websites where movement meets purpose. Every interaction is designed to engage your users and tell your story.",
+  },
+  {
+    title: "Brand Identity.",
+    subtitle: "We turn your vision into a visual language that stands out. We create identities that people recognize, trust, and remember.",
+  },
+  {
+    title: "SEO Optimization.",
+    subtitle: "Being seen is everything. We optimize your site from the start to ensure you reach the right audience at the right time.",
+  },
+  {
+    title: "Hosting & Maintenance.",
+    subtitle: "Performance is a standard. Our architectural hosting keeps your platform fast and secure so you can stay focused on your business.",
+  },
+]
+
+export default function Services() {
+  const ref = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  })
+
+  return (
+    <div
+      ref={ref}
+      className="bg-bone-white text-ash-gray relative h-[1000vh]"
+    >
+      <div className="absolute top-0 left-0 z-20">
+        <h1>Form Meets Function.</h1>
+        <p>We combine intentional design with modern technology.</p>
+      </div>
+      {slides.map((slide, i) => {
+        const overlap = 0.08
+
+        const start = i / slides.length
+        const end = (i + 1) / slides.length
+
+        const enterStart = Math.max(0, start - overlap)
+        const exitEnd = Math.min(1, end + overlap)
+
+        const yTitle = useTransform(
+          scrollYProgress,
+          [
+            enterStart,
+            start + 0.35 * (end - start),
+            start + 0.75 * (end - start),
+            exitEnd,
+          ],
+          ["200%", "0%", "0%", "-200%"],
+        )
+
+        const ySubtitle = useTransform(
+          scrollYProgress,
+          [
+            enterStart,
+            start + 0.4 * (end - start),
+            start + 0.8 * (end - start),
+            exitEnd,
+          ],
+          ["300%", "0%", "0%", "-300%"],
+        )
+
+        return (
+          <div
+            key={i}
+            className={`sticky top-0 mx-auto flex h-screen w-[80%] flex-col justify-center text-center`}
+          >
+            <div className="overflow-hidden">
+              <motion.h1
+                style={{ y: yTitle }}
+                className="text-5xl font-medium leading-14"
+              >
+                {slide.title}
+              </motion.h1>
+            </div>
+
+            <div className="overflow-hidden">
+              <motion.p
+                style={{ y: ySubtitle }}
+                className="text-3xl"
+              >
+                {slide.subtitle}
+              </motion.p>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
