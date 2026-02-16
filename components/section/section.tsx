@@ -1,8 +1,20 @@
-import { motion, useScroll, useTransform } from "motion/react"
+import { subheadingMask } from "@/lib/animations"
+import { motion, useInView, useScroll, useTransform } from "motion/react"
 import { useRef } from "react"
+
+const subheading = [
+	"Social platforms limit your reach. A",
+	"dedicated website ensures you own the",
+	"connection, the data, and the revenue.",
+]
 
 export default function Section() {
 	const containerRef = useRef<HTMLDivElement>(null)
+	const subheadingRef = useRef<HTMLDivElement>(null)
+
+	const isInView = useInView(subheadingRef, {
+		once: false,
+	})
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
@@ -16,7 +28,7 @@ export default function Section() {
 			ref={containerRef}
 			className="relative grid h-[120vh] grid-cols-12 grid-rows-12"
 		>
-			<div className="text-red-secondary z-10 p-4 col-start-1 row-span-4 row-start-4 flex h-full flex-col justify-center gap-1">
+			<div className="text-red-secondary z-10 col-start-1 row-span-4 row-start-4 flex h-full flex-col justify-center gap-1 p-4">
 				<h2 className="text-[120px] leading-[100px] font-semibold tracking-tighter uppercase">
 					own
 				</h2>
@@ -27,11 +39,21 @@ export default function Section() {
 					audience
 				</h2>
 			</div>
-			<div className="text-red-secondary col-start-8 row-start-9 col-span-4 leading-8 z-10 font-medium text-2xl">
-				<h3 className="leading-tight">
-					Social platforms limit your reach. A dedicated website
-					ensures you own the connection, the data, and the revenue.
-				</h3>
+			<div ref={subheadingRef} className="text-red-secondary z-10 col-span-4 col-start-8 row-span-2 row-start-9 text-2xl leading-8 font-medium">
+				{subheading.map((line, i) => (
+					<div key={i} className="overflow-hidden">
+						<motion.h3
+							variants={subheadingMask}
+							initial="initial"
+							animate={isInView ? "animate" : "initial"}
+							custom={i}
+							viewport={{ margin: "-100px" }}
+							className="leading-tight"
+						>
+							{line}
+						</motion.h3>
+					</div>
+				))}
 			</div>
 			<div className="absolute inset-0 overflow-hidden">
 				<motion.video
