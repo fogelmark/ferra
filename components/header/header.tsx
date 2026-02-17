@@ -16,7 +16,7 @@ export default function Header() {
 	return (
 		// <header className="fixed top-0 right-0 left-0 z-10 mx-auto w-full bg-gray-background border-b border-white/5 px-0.5 py-0.5">
 		// <header className="fixed top-0 right-0 left-0 z-10 mx-auto mt-[45px] w-full text-white mix-blend-difference px-0.5 py-2">
-		<header className="fixed top-0 right-0 left-0 z-10 mx-auto mt-[45px] w-full text-white px-0.5 py-2">
+		<header className="fixed top-0 right-0 left-0 z-10 mx-auto w-full text-white px-0.5 py-4">
 			{/* <nav className="relative grid grid-cols-[20%_1fr_20%] items-center gap-4"> */}
 			<nav className="relative grid grid-cols-12 items-center gap-4">
 				{/* <div

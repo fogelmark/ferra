@@ -5,7 +5,7 @@ export default function Intro() {
 	// [0.86, 0, 0.07, 1] // för images
 
 	return (
-		<section className="grid h-[150vh] grid-cols-12 grid-rows-12 items-center px-12">
+		<section className="grid h-[150vh] bg-ash-gray grid-cols-12 grid-rows-12 items-center px-12">
 			<SubHeadingIntro />
 			<MainIntroHeading />
 		</section>

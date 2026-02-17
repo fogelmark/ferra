@@ -25,7 +25,7 @@ export default function Hero() {
 	return (
 		<div
 			ref={ref}
-			className="text-bone-white relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] gap-y-8"
+			className="text-bone-white bg-ash-gray relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] gap-y-8"
 		>
 			<div className="relative z-10 col-span-2 col-start-3 self-end pl-4">
 				<motion.div style={{ y: headingTwo }}>
