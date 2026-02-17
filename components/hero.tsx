@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { cn } from "@/lib/utils"
 import { leaguegothic } from "@/lib/fonts"
 import { useRef } from "react"
@@ -12,7 +14,7 @@ export default function Hero() {
 	})
 
 	const headingOne = useTransform(scrollYProgress, [0, 0.6], ["0px", "50px"])
-	const headingTwo = useTransform(scrollYProgress, [0, 1], ["0px", "300px"])
+	const headingTwo = useTransform(scrollYProgress, [0, 1], ["0px", "150px"])
 	const opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 	const blur = useTransform(
 		scrollYProgress,

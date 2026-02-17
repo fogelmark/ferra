@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
-import { murmure, leaguegothic } from "@/lib/fonts"
+import { leaguegothic } from "@/lib/fonts"
 import { useEffect, useState } from "react"
 import type { Variants } from "motion/react"
 

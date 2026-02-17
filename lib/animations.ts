@@ -6,7 +6,7 @@
 			y: "0%",
 			opacity: 1,
 			transition: {
-				delay: 0.05 * i,
+				delay: 0.08 * i,
 				duration: 0.8,
 				ease: [0, 0, 0.2, 1],
 			},

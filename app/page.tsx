@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 "use client"
 
 import Lenis from "lenis"
@@ -7,8 +5,8 @@ import { useEffect } from "react"
 import Footer from "@/components/footer/footer"
 import Intro from "@/components/intro/intro"
 import Section from "@/components/section/section"
-import Services from "@/components/section/services"
 import Hero from "@/components/hero"
+import StickyService from "@/components/section/sticky-services"
 
 export default function Home() {
 	useEffect(() => {
@@ -25,7 +23,7 @@ export default function Home() {
 			<Hero />
 			<Intro />
 			<Section />
-			<Services />
+			<StickyService />
 			<Footer />
 		</div>
 	)

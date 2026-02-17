@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client"
 
 import { useScroll, motion } from "motion/react"

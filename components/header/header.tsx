@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { inter, leaguegothic, sentient } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import ButtonCtaHeader from "../buttons/button-cta-header"
