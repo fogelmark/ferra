@@ -28,18 +28,15 @@ export default function Section() {
 			ref={containerRef}
 			className="relative grid h-[120vh] grid-cols-12 grid-rows-12"
 		>
-			<div className="text-red-secondary z-10 col-start-1 row-span-4 row-start-4 flex h-full flex-col justify-center gap-1 p-4">
-				<h2 className="text-[120px] leading-[100px] font-semibold tracking-tighter uppercase">
-					own
-				</h2>
-				<h2 className="text-[120px] leading-[100px] font-semibold tracking-tighter uppercase">
-					your
-				</h2>
-				<h2 className="text-[120px] leading-[100px] font-semibold tracking-tighter uppercase">
-					audience
-				</h2>
+			<div className="text-red-secondary z-10 col-start-1 leading-[60px] text-[60px] row-span-4 row-start-2 md:row-start-4 flex h-full col-span-12 flex-col justify-center gap-1 p-4 md:text-[120px] md:leading-[100px] font-semibold tracking-tighter uppercase">
+				<h2>own</h2>
+				<h2>your</h2>
+				<h2>audience</h2>
 			</div>
-			<div ref={subheadingRef} className="text-red-secondary z-10 col-span-4 col-start-8 row-span-2 row-start-9 text-2xl leading-8 font-medium">
+			<div
+				ref={subheadingRef}
+				className="text-red-secondary p-4 z-10 md:col-span-5 col-span-12 md:col-start-8 row-span-2 row-start-7 md:row-start-9 text-lg md:text-2xl leading-8 font-medium"
+			>
 				{subheading.map((line, i) => (
 					<div key={i} className="overflow-hidden">
 						<motion.h3

@@ -10,12 +10,9 @@ export default function Footer() {
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
-		// We track from when the top of the footer hits the bottom of the viewport
-		// until the bottom of the footer hits the bottom of the viewport.
 		offset: ["start end", "end end"],
 	})
 
-	// Adjusted the parallax transform to start further down for a 100vh height
 	const y = useTransform(scrollYProgress, [0, 1], ["300px", "0px"])
 
 	return (
@@ -34,16 +31,33 @@ export default function Footer() {
 					>
 						<motion.h1
 							className={cn(
-								"text-ash-gray text-center text-[25.5vw] leading-[80%] whitespace-nowrap uppercase select-none",
+								"text-ash-gray text-center text-[25.5vw] leading-[80%] whitespace-nowrap uppercase select-none max-sm:hidden",
 								leaguegothic.className,
 							)}
 						>
 							ferra studio
 						</motion.h1>
-						<div className="h-min-content col-span-12 flex items-end justify-between text-sm text-[#8c8c8c]">
+						<div className="col-span-12 md:hidden text-ash-gray">
+							<motion.h1
+								className={cn(
+									"text-center text-[50vw] leading-[80%] whitespace-nowrap uppercase select-none",
+									leaguegothic.className,
+								)}
+							>
+								ferra
+							</motion.h1>
+							<motion.h1
+								className={cn(
+									"text-center text-[45vw] leading-[80%] whitespace-nowrap uppercase select-none",
+									leaguegothic.className,
+								)}
+							>
+								studio
+							</motion.h1>
+						</div>
+						<div className="h-min-content col-span-12 flex md:flex-row flex-col items-center md:items-end md:justify-between text-sm text-[#8c8c8c]">
 							<p className="uppercase">© 2026 Ferra Studio</p>
 							<p>hello@ferrastudio.com</p>
-							{/* <p>11:35 AM Stockholm</p> */}
 							<p className="uppercase">Back to top</p>
 						</div>
 					</motion.div>

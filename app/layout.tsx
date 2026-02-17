@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import Header from "@/components/header/header"
 import { inter } from "@/lib/fonts"
+import { MinHeader } from "@/components/header/min-header"
 
 export const metadata: Metadata = {
 	title: "Ferra Studio",
@@ -18,7 +18,7 @@ export default function RootLayout({
 			<body
 				className={`${inter.className} antialiased`}
 			>
-				{/* <Header /> */}
+				<MinHeader />
 				{children}
 			</body>
 		</html>

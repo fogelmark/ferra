@@ -25,7 +25,7 @@ export default function SubHeadingIntro() {
 	return (
 		<div
 			ref={ref}
-			className="col-span-4 col-start-1 row-span-2 row-start-4"
+			className="md:col-span-4 col-span-12 self-end col-start-1 md:row-span-2 md:row-start-4 row-start-1"
 		>
 			{subheading.map((line, i) => (
 				<div className="min-h-[1em] overflow-hidden" key={i}>
@@ -34,7 +34,7 @@ export default function SubHeadingIntro() {
 						initial="initial"
 						animate={isInView ? "animate" : "initial"}
 						custom={i}
-						className="text-lg will-change-transform"
+						className="md:text-lg text-sm will-change-transform"
 					>
 						{line}
 					</motion.p>

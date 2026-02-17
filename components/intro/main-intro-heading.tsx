@@ -27,10 +27,10 @@ export default function MainIntroHeading() {
 	return (
 		<div
 			ref={ref}
-			className="col-span-12 col-start-1 row-span-5 row-start-7 text-right text-7xl"
+			className="col-span-12 col-start-1 md:row-span-5 grid-rows-[min-content_min-content] row-start-2 md:row-start-7 md:text-right text-xl md:text-7xl"
 		>
 			{heading.map((line, i) => (
-				<div key={i} className="min-h-[1em] overflow-hidden leading-14">
+				<div key={i} className="min-h-[1em] overflow-hidden md:leading-14">
 					<motion.h2
 						variants={maskAnimation}
 						initial="initial"
