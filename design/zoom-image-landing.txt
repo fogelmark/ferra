@@ -1,0 +1,77 @@
+/* eslint-disable */
+
+"use client"
+
+import { leaguegothic } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+import Lenis from "lenis"
+import { useEffect, useRef } from "react"
+import { motion, useScroll, useTransform } from "motion/react"
+import bernard from "@/public/images/bernard.jpg"
+import Footer from "@/components/footer/footer"
+
+const subheading = [
+	"We design and build thoughtful digital",
+	"experiences for brands and businesses.",
+]
+
+const slogan = ["Elevate your digital presence."]
+
+export default function Home() {
+	useEffect(() => {
+		const lenis = new Lenis()
+		function raf(time: number) {
+			lenis.raf(time)
+			requestAnimationFrame(raf)
+		}
+		requestAnimationFrame(raf)
+	}, [])
+
+	const containerRef = useRef<HTMLDivElement>(null)
+
+	const { scrollYProgress } = useScroll({
+		target: containerRef,
+		offset: ["start end", "end end"],
+	})
+
+	const image = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
+	const one = useTransform(scrollYProgress, [0, 1], ["0px", "-50px"])
+	const overlayOpacity = useTransform(scrollYProgress, [0, 1], [0, 1])
+
+	return (
+		<div ref={containerRef} className="bg-gray-background">
+			<div className="relative isolate grid h-screen w-full grid-cols-4 grid-rows-[auto_min-content] gap-y-8 overflow-hidden">
+				<div className="absolute inset-0 overflow-hidden">
+					<motion.img
+						style={{ y: image }}
+						src={bernard.src}
+						className="h-full w-full scale-125 object-cover object-center"
+					/>
+				</div>
+				{/* <motion.div
+					style={{ opacity: overlayOpacity }}
+					className="pointer-events-none absolute inset-0 bg-white"
+				/> */}
+				<div className="relative z-10 col-span-2 col-start-3 self-end pl-4">
+					{slogan.map((line, index) => (
+						<motion.div style={{ y: one }} key={index}>
+							<h2 className="text-4xl font-medium">{line}</h2>
+						</motion.div>
+					))}
+				</div>
+
+				<div className="relative col-span-4 self-end">
+					<h1
+						className={cn(
+							"text-center text-[25.5vw] leading-[80%] whitespace-nowrap uppercase",
+							leaguegothic.className,
+						)}
+					>
+						ferra studio
+					</h1>
+				</div>
+			</div>
+			<Footer />
+		</div>
+	)
+}

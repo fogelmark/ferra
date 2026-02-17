@@ -1,0 +1,64 @@
+"use client"
+
+import { useScroll } from "motion/react"
+import React, { useRef } from "react"
+
+export default function Services() {
+  const container = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "end start"],
+  })
+
+  return (
+    <div ref={container} className="bg-bone-white p-48">
+      <div className="text-ash-gray mx-auto mb-16 flex w-[80%] flex-col gap-4 text-center">
+        <h1 className="text-5xl font-medium">Form Meets Function.</h1>
+        <p className="text-3xl">
+          We combine intentional design with modern technology to
+          elevate your digital presence.
+        </p>
+      </div>
+      <div className="grid grid-cols-12 grid-rows-2 gap-4">
+        <div className="text-ash-gray col-span-7 flex flex-col justify-center gap-2 rounded-lg bg-[#f5f4f280] px-6 py-8">
+          <h3 className="text-xl font-semibold">
+            Web Design & Development
+          </h3>
+          <p>
+            We curate immersive digital environments where motion
+            meets functionality. Every interaction is intentionally
+            choreographed to elevate your brand’s narrative.
+          </p>
+        </div>
+        <div className="text-ash-gray col-span-5 flex flex-col justify-center gap-2 rounded-lg bg-[#f5f4f280] px-6 py-8">
+          <h3 className="text-xl font-semibold">Brand Identity</h3>
+          <p>
+            Identity is the soul of your business. We translate your
+            core values into a visual language that commands
+            attention and builds lasting loyalty.
+          </p>
+        </div>
+        <div className="text-ash-gray col-span-6 flex flex-col justify-center gap-2 rounded-lg bg-[#f5f4f280] px-6 py-8">
+          <h3 className="text-xl font-semibold">SEO Strategy</h3>
+          <p>
+            Presence is nothing without findability. We implement
+            sophisticated search strategies that align your content
+            with the specific intent of your highest-value
+            customers.
+          </p>
+        </div>
+        <div className="text-ash-gray col-span-6 flex flex-col justify-center gap-2 rounded-lg bg-[#f5f4f280] px-6 py-8">
+          <h3 className="text-xl font-semibold">
+            Maintenance & Hosting
+          </h3>
+          <p>
+            Performance is a standard, not an option. Our
+            architectural hosting ensures your platform remains a
+            seamless, high-speed sanctuary for your audience.
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
