@@ -52,11 +52,14 @@ export function MinHeader() {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
+		<>
 		<header
 			className={cn(
 				"fixed z-30 w-full flex justify-between px-4 py-4 text-sm uppercase md:px-10 md:py-12",
 				{
 					"text-ash-gray": isOpen,
+					"mix-blend-difference": !isOpen
+					
 				},
 			)}
 		>
@@ -94,8 +97,6 @@ export function MinHeader() {
 					<p className="text-base">{isOpen ? "close" : "menu"}</p>
 				</div>
 			</motion.div>
-      <ButtonCtaHeader />
-
 			<motion.aside
 				role="presentation"
 				onClick={(e) => e.stopPropagation()}
@@ -134,5 +135,9 @@ export function MinHeader() {
 				</div>
 			</motion.aside>
 		</header>
+		<div className="ms-auto fixed z-30 flex justify-end px-4 py-4 text-sm uppercase md:px-10 md:py-12 right-0">      		
+			<ButtonCtaHeader />
+		</div>
+		</>
 	)
 }

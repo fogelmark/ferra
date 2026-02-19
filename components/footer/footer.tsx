@@ -13,6 +13,10 @@ export default function Footer() {
 		offset: ["start end", "end end"],
 	})
 
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, behavior: "smooth" })
+	}
+
 	const y = useTransform(scrollYProgress, [0, 1], ["300px", "0px"])
 
 	return (
@@ -55,10 +59,10 @@ export default function Footer() {
 								studio
 							</motion.h1>
 						</div>
-						<div className="h-min-content col-span-12 flex md:flex-row flex-col items-center md:items-end md:justify-between text-sm text-[#8c8c8c]">
+						<div className="h-min-content col-span-12 flex md:flex-row flex-col items-center md:items-end md:justify-between justify-end text-sm text-[#8c8c8c] gap-3">
 							<p className="uppercase">© 2026 Ferra Studio</p>
-							<p>hello@ferrastudio.com</p>
-							<p className="uppercase">Back to top</p>
+							<p><a href="mailto:hello@ferrastudio.com">hello@ferrastudio.com</a></p>
+							<p className="uppercase cursor-pointer" onClick={scrollToTop}>Back to top</p>
 						</div>
 					</motion.div>
 				</div>
