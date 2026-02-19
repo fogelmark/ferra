@@ -33,7 +33,7 @@ export default function StickyService() {
 				<div className="flex flex-col items-start justify-between pb-20 md:flex-row">
 					<div className="mb-8 flex items-center gap-2 md:mb-0">
 						<span className="text-sm font-medium text-black/40 tabular-nums">
-							04
+							00
 						</span>
 						<span className="text-ash-gray text-sm font-medium uppercase">
 							services
