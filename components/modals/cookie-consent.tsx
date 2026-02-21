@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react"
-import { usePathname, useSearchParams } from "next/navigation"
+import { usePathname } from "next/navigation"
 import ButtonConsent from "../buttons/button-consent"
 import {
 	gtagConsentDenyAll,
@@ -19,34 +19,31 @@ const readConsent = (): ConsentChoice => {
 }
 
 export default function CookieConsent() {
-    const isClient = useSyncExternalStore(
-        () => () => {},   // no subscription needed
-        () => true,       // client snapshot
-        () => false       // server snapshot
-    );
-	const [choice, setChoice] = useState<ConsentChoice>(() => readConsent())
+	// true only on the client snapshot, false on server snapshot
+	const isClient = useSyncExternalStore(
+		() => () => {}, // no-op subscribe
+		() => true,     // client snapshot
+		() => false     // server snapshot
+	)
 
+	const [choice, setChoice] = useState<ConsentChoice>(() => readConsent())
 	const pathname = usePathname()
-	const searchParams = useSearchParams()
 
 	const url = useMemo(() => {
-		const qs = searchParams?.toString()
-		return qs ? `${pathname}?${qs}` : pathname
-	}, [pathname, searchParams])
+		if (typeof window === "undefined") return pathname
+		return `${pathname}${window.location.search || ""}`
+	}, [pathname])
 
-	// Apply consent + track page views when allowed
 	useEffect(() => {
+		if (!isClient) return
+
 		if (choice === "accepted_analytics") {
 			gtagConsentGrantAnalytics()
 			gtagPageview(url)
-			return
-		}
-
-		if (choice === "rejected") {
+		} else if (choice === "rejected") {
 			gtagConsentDenyAll()
 		}
-		// if unknown: keep default denied from layout
-	}, [choice, url])
+	}, [isClient, choice, url])
 
 	const accept = () => {
 		localStorage.setItem(STORAGE_KEY, "accepted_analytics")
@@ -58,12 +55,9 @@ export default function CookieConsent() {
 		setChoice("rejected")
 	}
 
-	// If you want to debug, use an effect to avoid noisy logs on every render:
-	// useEffect(() => console.log("CHOICE?:", choice), [choice])
-
-    console.log("CHOICE?: ", choice)
-    if (!isClient) return null;
-	if (choice !== "unknown") return null;
+	// Avoid rendering anything until we're on the client
+	if (!isClient) return null
+	if (choice !== "unknown") return null
 
 	return (
 		<div className="bg-ash-gray/80 fixed inset-0 z-50 flex items-end justify-end">
@@ -72,8 +66,7 @@ export default function CookieConsent() {
 				<hr className="my-3 opacity-50" />
 				<p className="text-sm">
 					We use cookies to run this site and to understand usage with Google Analytics 4.
-					Analytics cookies are optional. You can accept all, reject non-essential cookies,
-					or manage your preferences.
+					Analytics cookies are optional.
 				</p>
 
 				<div className="flex mt-5 justify-end gap-5">
