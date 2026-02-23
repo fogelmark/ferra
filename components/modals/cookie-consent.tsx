@@ -60,17 +60,17 @@ export default function CookieConsent() {
 	if (choice !== "unknown") return null
 
 	return (
-		<div className="bg-ash-gray/80 fixed inset-0 z-50 flex items-end justify-end">
-			<div className="bg-bone-white text-ash-gray relative w-full max-w-md rounded-2xl p-5 me-10 mb-10">
-				<h2 className="text-xl">We use cookies</h2>
-				<hr className="my-3 opacity-50" />
+		<div className="bg-ash-gray/0 fixed inset-0 z-50 flex items-end justify-end">
+			<div className="bg-gray-background text-bone-white relative w-full max-w-md rounded-2xl p-5 me-10 mb-10 border border-white/10">
+				{/* <h2 className="text-xl">We use cookies</h2>
+				<hr className="my-2 opacity-50" /> */}
 				<p className="text-sm">
 					We use cookies to run this site and to understand usage with Google Analytics 4.
 					Analytics cookies are optional.
 				</p>
 
-				<div className="flex mt-5 justify-end gap-5">
-					<ButtonConsent onClick={accept} text="accept" color="bg-emerald-800" />
+				<div className="flex mt-5 justify-end gap-3">
+					<ButtonConsent onClick={accept} text="accept" color="bg-green-primary/50 hover:bg-green-primary" />
 					<ButtonConsent onClick={deny} text="opt-out" />
 				</div>
 			</div>

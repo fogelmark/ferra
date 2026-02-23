@@ -13,7 +13,7 @@ export default function ButtonConsent({onClick, text, color}: ButtonProps) {
 	// )
 	return (
 		<button 
-      className={`cursor-pointer rounded-sm border border-white/20 ${color ?? "bg-black/50"} px-8 py-3 text-xs font-medium text-white uppercase backdrop-blur-md`}
+      className={`cursor-pointer rounded-sm border border-white/20 ${color ?? "bg-black/50 hover:bg-black"}  px-8 py-3 text-xs font-medium text-white uppercase backdrop-blur-md`}
       onClick={onClick}
       >
 			{text}
