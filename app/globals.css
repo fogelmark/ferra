@@ -20,6 +20,7 @@
 	--color-ash-gray: #211e1f;
 	--color-footer-background: oklch(0.14 0.0041 106.82);
 	--color-gray-tertiary: oklch(0.36 0 0);
+	--color-green-primary: oklch(0.64 0.14 135);
 }
 
 @media (prefers-color-scheme: dark) {
