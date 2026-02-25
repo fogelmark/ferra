@@ -61,7 +61,7 @@ export default function CookieConsent() {
 
 	return (
 		<div className="bg-ash-gray/0 fixed inset-0 z-50 flex items-end justify-end">
-			<div className="bg-gray-background text-bone-white relative w-full max-w-md rounded-2xl p-5 me-10 mb-10 border border-white/10">
+			<div className="bg-gray-background text-bone-white relative w-full max-w-md rounded-2xl p-5 mx-5 md:mx-0 md:me-10 mb-5 md:mb-10 border border-white/10">
 				{/* <h2 className="text-xl">We use cookies</h2>
 				<hr className="my-2 opacity-50" /> */}
 				<p className="text-sm">
