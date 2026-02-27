@@ -1,6 +1,27 @@
 // lib/ga.ts
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 
+export const gtagConsentDefault = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = gtag;
+
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+`;
+
+export const gtagInit = (gaId: string) => `
+  // Ensure gtag exists (in case consent script didn't run for some reason)
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  window.gtag = window.gtag || gtag;
+
+  gtag('js', new Date());
+  gtag('config', '${gaId}', { send_page_view: false });
+`;
+
 export function gtagConsentDefaultDenied() {
 	if (!GA_ID) return
 	if (typeof window === "undefined" || !window.gtag) return
