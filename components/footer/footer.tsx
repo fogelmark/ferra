@@ -22,7 +22,7 @@ export default function Footer() {
 	return (
 		<div
 			ref={containerRef}
-			className="relative h-screen bg-[#e7e7e7]"
+			className="bg-footer-gray relative h-screen"
 			style={{
 				clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
 			}}
@@ -41,7 +41,7 @@ export default function Footer() {
 						>
 							ferra studio
 						</motion.h1>
-						<div className="col-span-12 md:hidden text-ash-gray">
+						<div className="text-ash-gray col-span-12 md:hidden">
 							<motion.h1
 								className={cn(
 									"text-center text-[50vw] leading-[80%] whitespace-nowrap uppercase select-none",
@@ -59,10 +59,19 @@ export default function Footer() {
 								studio
 							</motion.h1>
 						</div>
-						<div className="h-min-content col-span-12 flex md:flex-row flex-col items-center md:items-end md:justify-between justify-end text-sm text-[#8c8c8c] gap-3">
+						<div className="h-min-content col-span-12 flex flex-col items-center justify-end gap-3 text-sm text-[#8c8c8c] md:flex-row md:items-end md:justify-between">
 							<p className="uppercase">© 2026 Ferra Studio</p>
-							<p><a href="mailto:hello@ferrastudio.com">hello@ferrastudio.com</a></p>
-							<p className="uppercase cursor-pointer" onClick={scrollToTop}>Back to top</p>
+							<p>
+								<a href="mailto:hello@ferrastudio.com">
+									hello@ferrastudio.com
+								</a>
+							</p>
+							<p
+								className="cursor-pointer uppercase"
+								onClick={scrollToTop}
+							>
+								Back to top
+							</p>
 						</div>
 					</motion.div>
 				</div>
