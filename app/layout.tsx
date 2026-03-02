@@ -1,18 +1,20 @@
-import type { Metadata } from "next"
 import "./globals.css"
+import { GA_ID } from "@/lib/google-analytics"
 import { inter } from "@/lib/fonts"
 import { MinHeader } from "@/components/header/min-header"
-import Script from "next/script"
-import { GA_ID } from "@/lib/google-analytics"
 import CookieConsent from "@/components/modals/cookie-consent"
+import Preloader from "@/components/preloader/preloader"
+import Script from "next/script"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ferrastudio.com"),
 	title: "Ferra Studio | Creative Studio in Stockholm",
-	description: "Ferra Studio is a Stockholm-based creative studio shaping the visual identity of the music industry and visionary brands through bold design and digital experiences.",
+	description:
+		"Ferra Studio is a Stockholm-based creative studio shaping the visual identity of the music industry and visionary brands through bold design and digital experiences.",
 	alternates: {
-    	canonical: "/",
-  	},
+		canonical: "/",
+	},
 }
 
 export default function RootLayout({
@@ -22,9 +24,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`${inter.className} antialiased`}
-			>
+			<body className={`${inter.className} antialiased`}>
 				<Script id="gtag-consent-default" strategy="beforeInteractive">
 					{`
 						window.dataLayer = window.dataLayer || [];
@@ -53,6 +53,7 @@ export default function RootLayout({
 				) : null}
 				<CookieConsent />
 				<MinHeader />
+				<Preloader />
 				{children}
 			</body>
 		</html>
