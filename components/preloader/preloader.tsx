@@ -53,7 +53,7 @@ export default function PreloaderAlt() {
 						},
 					}}
 					className={cn(
-						"text-bone-white pb-1 text-7xl leading-none font-medium uppercase",
+						"text-bone-white text-7xl leading-none font-medium uppercase translate-y-0.5",
 						leaguegothic.className,
 					)}
 				>
