@@ -56,7 +56,7 @@ export default function StickyService() {
 				{services.map((service, index) => (
 					<div
 						key={service.id}
-						className="sticky top-20 mx-auto w-[90%] border-t border-b border-black/10 bg-[#f5f4f2]"
+						className="sticky top-20 mx-auto w-full md:w-[90%] border-t border-b border-black/10 bg-[#f5f4f2]"
 						style={{ marginTop: index === 0 ? "0" : "-1px" }}
 					>
 						<div className="mx-auto max-w-7xl px-6 py-18 lg:px-20 lg:py-24">
