@@ -1,11 +1,10 @@
 "use client"
 
-import Lenis from "lenis"
 import { useEffect } from "react"
-import Footer from "@/components/footer/footer"
-import Intro from "@/components/intro/intro"
-import Section from "@/components/section/section"
 import Hero from "@/components/hero"
+import Intro from "@/components/intro/intro"
+import Lenis from "lenis"
+import Section from "@/components/section/section"
 import StickyService from "@/components/section/sticky-services"
 
 export default function Home() {
@@ -24,7 +23,6 @@ export default function Home() {
 			<Intro />
 			<Section />
 			<StickyService />
-			<Footer />
 		</div>
 	)
 }

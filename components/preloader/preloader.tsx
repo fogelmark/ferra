@@ -6,7 +6,7 @@ import { motion } from "motion/react"
 import Image from "next/image"
 import logo from "@/public/images/logo.png"
 
-export default function PreloaderAlt() {
+export default function Preloader() {
 	return (
 		<motion.div
 			initial={{ y: 0 }}
@@ -53,7 +53,7 @@ export default function PreloaderAlt() {
 						},
 					}}
 					className={cn(
-						"text-bone-white text-7xl leading-none font-medium uppercase translate-y-0.5",
+						"text-bone-white translate-y-0.5 text-7xl leading-none font-medium uppercase",
 						leaguegothic.className,
 					)}
 				>

@@ -1,14 +1,16 @@
 import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
 import { useState } from "react"
+import Link from "next/link"
 
 interface ButtonProps {
 	children: string
 	className?: string
 	href?: string
+	onClick?: () => void
 }
 
-export const ButtonFlip = ({ children, className, href }: ButtonProps) => {
+export const ButtonFlip = ({ children, className, href, onClick }: ButtonProps) => {
 	const [hoverCount, setHoverCount] = useState(0)
 	const [animating, setAnimating] = useState(false)
 
@@ -52,18 +54,15 @@ export const ButtonFlip = ({ children, className, href }: ButtonProps) => {
 	)
 
 	return href ? (
-		// <div className="relative p-2">
-		<a
+		<Link
 			className={wrapper}
 			href={href}
-			target="_blank"
-			rel="noopener noreferrer"
 			onMouseEnter={handleHover}
+			onClick={onClick}
 		>
 			{inner}
-		</a>
+		</Link>
 	) : (
-		// </div>
 		<div className="relative w-fit">
 			<span
 				className={wrapper}

@@ -22,30 +22,8 @@ export const drawerVariants = {
 }
 
 const menuItems = [
-	{ text: "listen", href: "" },
-	{ text: "watch", href: "" },
-	{ text: "shop" },
-	{ text: "tour" },
-	{ text: "news" },
-]
-
-const socialLinks = [
-	{
-		href: "https://music.apple.com/se/artist/l%C3%A9on/1065692205?l=en-GB",
-		label: "Open Apple Music (opens in a new tab)",
-	},
-	{
-		href: "https://www.instagram.com/leon/",
-		label: "Open Instagram (opens in a new tab)",
-	},
-	{
-		href: "https://open.spotify.com/artist/4SqTiwOEdYrNayaGMkc7ia?si=U1ig4JftQm-kCDbByBkTCA",
-		label: "Open Spotify (opens in a new tab)",
-	},
-	{
-		href: "https://www.youtube.com/@itsleonmusic",
-		label: "Open YouTube (opens in a new tab)",
-	},
+	{ text: "home", href: "/" },
+	{ text: "projects", href: "/projects" },
 ]
 
 export function MinHeader() {
@@ -114,25 +92,13 @@ export function MinHeader() {
 							<ButtonFlip
 								className="text-5xl md:text-6xl"
 								href={item.href}
+								onClick={() => setIsOpen(false)}
 							>
 								{item.text}
 							</ButtonFlip>
 						</motion.li>
 					))}
 				</ul>
-
-				<div className="flex items-start justify-center gap-4">
-					{socialLinks.map(({ href, label }) => (
-						<a
-							key={href}
-							href={href}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label={label}
-							className="focus-visible:border-leon-yellow border-b-2 border-transparent px-1 pt-0 pb-1.5 text-current focus:outline-none focus-visible:border-b-2"
-						></a>
-					))}
-				</div>
 			</motion.aside>
 		</header>
 		<div className="ms-auto fixed z-30 flex justify-end px-4 py-4 text-sm uppercase md:px-10 md:py-12 right-0">      		
