@@ -1,6 +1,8 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { motion, useScroll, useTransform } from "motion/react"
+import { projectz } from "@/lib/projects"
 import Lenis from "lenis"
 import React, { useEffect, useRef } from "react"
 
@@ -15,6 +17,8 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 	alt,
 	children,
 }) => {
+	const container = useRef<HTMLDivElement>(null)
+
 	useEffect(() => {
 		const lenis = new Lenis()
 		function raf(time: number) {
@@ -22,53 +26,44 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 			requestAnimationFrame(raf)
 		}
 		requestAnimationFrame(raf)
+		return () => lenis.destroy()
 	}, [])
-
-	const container = useRef<HTMLDivElement>(null)
 
 	const { scrollYProgress } = useScroll({
 		target: container,
 		offset: ["start end", "end start"],
 	})
 
-	// Parallax för bilden
 	const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"])
-
-	/**
-	 * DYNAMISK OVERLAY LOGIK:
-	 * [0, 0.5, 1] representerar scroll-positionen.
-	 * [0, 0, 0.8] representerar opaciteten.
-	 * * Från 0 till 0.5 (halva sektionen) förblir opaciteten 0.
-	 * Från 0.5 till 1 (slutet av sektionen) ökar den linjärt till 0.8.
-	 */
 	const overlayOpacity = useTransform(
 		scrollYProgress,
-		[0, 0.3, 1],
-		[0, 0, 0.7],
+		[0, 0.5, 1],
+		[0.3, 0.3, 0.7],
 	)
 
 	return (
-		<section
-			ref={container}
-			className="relative h-[150vh] w-screen overflow-hidden bg-black"
-		>
-			<div className="absolute inset-0 h-full w-full overflow-hidden">
+		<section ref={container} className="relative h-screen bg-black">
+			<div className="pointer-events-none absolute inset-0 h-full w-full overflow-hidden">
 				<motion.img
 					style={{ y }}
 					src={src}
 					alt={alt}
-					className="h-full w-full scale-110 object-cover"
+					className={cn(
+						"h-full w-full scale-110 object-cover object-center will-change-transform",
+						{
+							"object-left md:object-bottom":
+								alt === "Östermalms Måleriservice",
+						},
+					)}
 				/>
-
-				{/* Overlay som triggas efter halva scrollen */}
 				<motion.div
 					style={{ opacity: overlayOpacity }}
-					className="pointer-events-none absolute inset-0 bg-black"
+					className="absolute inset-0 bg-black"
 				/>
 			</div>
 
-			<div className="relative z-10 flex h-full flex-col items-center justify-center text-white">
-				{children}
+			<div className="sticky top-0 z-10 flex px-10 text-white">
+				<div className="col-span-3 col-start-6 w-full">{children}</div>
 			</div>
 		</section>
 	)
@@ -76,33 +71,60 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 
 export default function Projects() {
 	return (
-		<main className="relative overflow-x-hidden bg-black">
-			<ParallaxSection src="/images/leon_bomb.jpg" alt="Project Leon">
-				<h2 className="text-5xl font-bold tracking-tighter uppercase">
-					Project Leon
-				</h2>
-				<p className="mt-4 text-xl opacity-80">Lead Developer</p>
-			</ParallaxSection>
+		<main className="relative bg-black">
+			{projectz.map((project, idx) => (
+				<ParallaxSection
+					key={idx}
+					src={project.images}
+					alt={project.name}
+				>
+					<div className="col-span-12 flex h-full w-full flex-col gap-12 py-28 md:flex-row">
+						<div className="z-50 flex min-w-[300px] flex-col justify-center gap-12 md:max-w-[400px]">
+							<div className="flex flex-col gap-2">
+								<div className="overflow-hidden">
+									<h3 className="text-4xl">{project.name}</h3>
+								</div>
+								<div>
+									<p className="text-md leading-[17px]">
+										{project.description}
+									</p>
+								</div>
+							</div>
 
-			<ParallaxSection
-				src="/images/ostermalm_small.jpg"
-				alt="Project Leon"
-			>
-				<h2 className="text-5xl font-bold tracking-tighter uppercase">
-					Project Leon
-				</h2>
-				<p className="mt-4 text-xl opacity-80">Lead Developer</p>
-			</ParallaxSection>
+							<div className="text-sm uppercase md:max-w-[300px]">
+								<div className="grid grid-cols-2">
+									<p className="text-gray-secondary">type</p>
+									<p>{project.type}</p>
+								</div>
+								<div className="grid grid-cols-2">
+									<p className="text-gray-secondary">role</p>
+									<p>{project.role}</p>
+								</div>
+								<div className="grid grid-cols-2">
+									<p className="text-gray-secondary">date</p>
+									<p>{project.date}</p>
+								</div>
+							</div>
 
-			<ParallaxSection
-				src="/images/tedrico_desktop.jpg"
-				alt="Project Leon"
-			>
-				<h2 className="text-5xl font-bold tracking-tighter uppercase">
-					Project Leon
-				</h2>
-				<p className="mt-4 text-xl opacity-80">Lead Developer</p>
-			</ParallaxSection>
+							<div className="grid grid-cols-2 grid-rows-1 text-sm uppercase md:max-w-[300px]">
+								<p className="text-gray-secondary">tools</p>
+								<div>
+									{project.tools.map((tool, id) => (
+										<p key={id}>{tool}</p>
+									))}
+								</div>
+							</div>
+
+							{/* <div className="flex flex-col gap-2 md:max-w-[300px] text-xs">
+                <Button href={selectedProject.href}>visit/preview</Button>
+                <Button href={selectedProject.github}>source code</Button>
+              </div> */}
+						</div>
+
+						<div className="relative h-full w-full"></div>
+					</div>
+				</ParallaxSection>
+			))}
 		</main>
 	)
 }
