@@ -2,45 +2,69 @@
 
 import { useScroll, useMotionValueEvent, motion } from "framer-motion"
 import { useState } from "react"
+import Image from "next/image"
+import logo from "@/public/images/logo.png"
+import NavLink from "@/components/navlink"
 
 export default function StickyHeader() {
-  const { scrollY } = useScroll()
-  const [hidden, setHidden] = useState(false)
+	const { scrollY } = useScroll()
+	const [hidden, setHidden] = useState(false)
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0
-    const threshold = window.innerHeight * 1
+	useMotionValueEvent(scrollY, "change", (latest) => {
+		const previous = scrollY.getPrevious() ?? 0
+		const threshold = typeof window !== "undefined" ? window.innerHeight : 0
 
-    if (latest > threshold) {
-      if (latest > previous) {
-        setHidden(true)
-      } else {
-        setHidden(false)
-      }
-    } else {
-      setHidden(false)
-    }
-  })
+		if (latest > threshold) {
+			if (latest > (previous ?? 0)) {
+				setHidden(true)
+			} else {
+				setHidden(false)
+			}
+		} else {
+			setHidden(false)
+		}
+	})
 
-  return (
-    <motion.header
-      variants={{
-        visible: { y: 0, opacity: 1 },
-        hidden: { y: 100, opacity: 0 },
-      }}
-      animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed bottom-4 left-1/2 z-50 max-w-2xl -translate-x-1/2 rounded-lg bg-background/50 text-white shadow-md backdrop-blur-md"
-    >
-      <nav>
-        <ul className="flex items-center justify-around gap-4 px-8 py-3 text-sm font-semibold uppercase">
-          <li><a href="#">work</a></li>
-          <li><a href="#">videos</a></li>
-          <li><a href="#">tour</a></li>
-          <li><a href="#">shop</a></li>
-          <li><a href="#">subscribe</a></li>
-        </ul>
-      </nav>
-    </motion.header>
-  )
+	return (
+		<motion.header
+			variants={{
+				visible: { y: 0, opacity: 1 },
+				hidden: { y: 100, opacity: 0 },
+			}}
+			animate={hidden ? "hidden" : "visible"}
+			transition={{ duration: 0.3, ease: "easeOut" }}
+			className="bg-background/80 fixed bottom-4 left-1/2 z-50 max-w-2xl -translate-x-1/2 rounded-lg border border-white/10 text-white shadow-md backdrop-blur-md"
+		>
+			<nav className="flex items-center gap-4 px-6 py-3">
+				<motion.a
+					href="/"
+					className="flex shrink-0 items-center transition-opacity"
+				>
+					<Image
+						src={logo}
+						alt="Logo"
+						width={32}
+						height={32}
+						className="h-8 w-auto"
+					/>
+				</motion.a>
+
+				<div className="h-6 w-px bg-white/20" aria-hidden="true" />
+
+				<ul className="flex flex-1 items-center justify-around gap-8 text-sm font-semibold tracking-wider uppercase">
+					<li>
+						<NavLink href="/work">work</NavLink>
+					</li>
+					<li>
+						<NavLink href="/studio">studio</NavLink>
+					</li>
+					<li>
+						<NavLink href="mailto:hello@ferrastudio.com" isExternal>
+							contact
+						</NavLink>
+					</li>
+				</ul>
+			</nav>
+		</motion.header>
+	)
 }
