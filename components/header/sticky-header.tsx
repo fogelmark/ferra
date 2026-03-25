@@ -5,6 +5,7 @@ import { useState } from "react"
 import Image from "next/image"
 import logo from "@/public/images/logo.png"
 import NavLink from "@/components/navlink"
+import Link from "next/link"
 
 export default function StickyHeader() {
 	const { scrollY } = useScroll()
@@ -33,13 +34,10 @@ export default function StickyHeader() {
 			}}
 			animate={hidden ? "hidden" : "visible"}
 			transition={{ duration: 0.3, ease: "easeOut" }}
-			className="bg-background/80 fixed bottom-4 left-1/2 z-50 max-w-2xl -translate-x-1/2 rounded-lg border border-white/10 text-white shadow-md backdrop-blur-md"
+			className="bg-background/70 fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg border border-white/5 text-white shadow-md backdrop-blur-md md:w-fit"
 		>
 			<nav className="flex items-center gap-4 px-6 py-3">
-				<motion.a
-					href="/"
-					className="flex shrink-0 items-center transition-opacity"
-				>
+				<Link href="/" className="flex shrink-0 items-center">
 					<Image
 						src={logo}
 						alt="Logo"
@@ -47,11 +45,11 @@ export default function StickyHeader() {
 						height={32}
 						className="h-8 w-auto"
 					/>
-				</motion.a>
+				</Link>
 
 				<div className="h-6 w-px bg-white/20" aria-hidden="true" />
 
-				<ul className="flex flex-1 items-center justify-around gap-8 text-sm font-semibold tracking-wider uppercase">
+				<ul className="flex flex-1 items-center justify-around text-xs font-semibold tracking-wider uppercase md:gap-8 md:text-sm">
 					<li>
 						<NavLink href="/work">work</NavLink>
 					</li>

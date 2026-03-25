@@ -9,6 +9,7 @@ import Preloader from "@/components/preloader/preloader"
 import Script from "next/script"
 import type { Metadata } from "next"
 import StickyHeader from "@/components/header/sticky-header"
+import { PreloaderProvider } from "@/context/preloader-context"
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ferrastudio.com"),
@@ -59,7 +60,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${inter.className} antialiased selection:text-red-secondary selection:bg-black`}>
+			<body
+				className={`${inter.className} selection:text-red-secondary antialiased selection:bg-black`}
+			>
 				<Script id="gtag-consent-default" strategy="beforeInteractive">
 					{gtagConsentDefault}
 				</Script>
@@ -82,10 +85,8 @@ export default function RootLayout({
 					}}
 				/>
 				<CookieConsent />
-				{/* <MinHeader /> */}
 				<StickyHeader />
-				<Preloader />
-				{children}
+				<PreloaderProvider>{children}</PreloaderProvider>
 				<Footer />
 			</body>
 		</html>

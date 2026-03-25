@@ -21,12 +21,14 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 
 	useEffect(() => {
 		const lenis = new Lenis()
+
 		function raf(time: number) {
 			lenis.raf(time)
 			requestAnimationFrame(raf)
 		}
+
+		window.scrollTo(0, 0)
 		requestAnimationFrame(raf)
-		return () => lenis.destroy()
 	}, [])
 
 	const { scrollYProgress } = useScroll({
@@ -78,20 +80,20 @@ export default function Work() {
 					src={work.images}
 					alt={work.name}
 				>
-					<div className="col-span-12 flex h-full w-full flex-col gap-12 py-28 md:flex-row">
-						<div className="z-50 flex min-w-[300px] flex-col justify-center gap-12 md:max-w-[400px]">
+					<div className="col-span-12 flex h-full w-full flex-col gap-12 py-12 md:flex-row">
+						<div className="z-50 flex min-w-75 flex-col justify-center gap-12 md:max-w-100">
 							<div className="flex flex-col gap-2">
 								<div className="overflow-hidden">
 									<h3 className="text-4xl">{work.name}</h3>
 								</div>
 								<div>
-									<p className="text-md leading-[17px]">
+									<p className="text-md leading-4.25">
 										{work.description}
 									</p>
 								</div>
 							</div>
 
-							<div className="text-sm uppercase md:max-w-[300px]">
+							<div className="text-sm uppercase md:max-w-75">
 								<div className="grid grid-cols-2">
 									<p className="text-gray-secondary">type</p>
 									<p>{work.type}</p>
@@ -106,7 +108,7 @@ export default function Work() {
 								</div>
 							</div>
 
-							<div className="grid grid-cols-2 grid-rows-1 text-sm uppercase md:max-w-[300px]">
+							<div className="grid grid-cols-2 grid-rows-1 text-sm uppercase md:max-w-75">
 								<p className="text-gray-secondary">tools</p>
 								<div>
 									{work.tools.map((tool, id) => (
