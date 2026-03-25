@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils"
 import { motion, useScroll, useTransform } from "motion/react"
-import { projectz } from "@/lib/projects"
+import { work } from "@/lib/work"
 import Lenis from "lenis"
 import React, { useEffect, useRef } from "react"
 
@@ -69,24 +69,24 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 	)
 }
 
-export default function Projects() {
+export default function Work() {
 	return (
 		<main className="relative bg-black">
-			{projectz.map((project, idx) => (
+			{work.map((work, idx) => (
 				<ParallaxSection
 					key={idx}
-					src={project.images}
-					alt={project.name}
+					src={work.images}
+					alt={work.name}
 				>
 					<div className="col-span-12 flex h-full w-full flex-col gap-12 py-28 md:flex-row">
 						<div className="z-50 flex min-w-[300px] flex-col justify-center gap-12 md:max-w-[400px]">
 							<div className="flex flex-col gap-2">
 								<div className="overflow-hidden">
-									<h3 className="text-4xl">{project.name}</h3>
+									<h3 className="text-4xl">{work.name}</h3>
 								</div>
 								<div>
 									<p className="text-md leading-[17px]">
-										{project.description}
+										{work.description}
 									</p>
 								</div>
 							</div>
@@ -94,22 +94,22 @@ export default function Projects() {
 							<div className="text-sm uppercase md:max-w-[300px]">
 								<div className="grid grid-cols-2">
 									<p className="text-gray-secondary">type</p>
-									<p>{project.type}</p>
+									<p>{work.type}</p>
 								</div>
 								<div className="grid grid-cols-2">
 									<p className="text-gray-secondary">role</p>
-									<p>{project.role}</p>
+									<p>{work.role}</p>
 								</div>
 								<div className="grid grid-cols-2">
 									<p className="text-gray-secondary">date</p>
-									<p>{project.date}</p>
+									<p>{work.date}</p>
 								</div>
 							</div>
 
 							<div className="grid grid-cols-2 grid-rows-1 text-sm uppercase md:max-w-[300px]">
 								<p className="text-gray-secondary">tools</p>
 								<div>
-									{project.tools.map((tool, id) => (
+									{work.tools.map((tool, id) => (
 										<p key={id}>{tool}</p>
 									))}
 								</div>

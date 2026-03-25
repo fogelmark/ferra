@@ -8,6 +8,7 @@ import Footer from "@/components/footer/footer"
 import Preloader from "@/components/preloader/preloader"
 import Script from "next/script"
 import type { Metadata } from "next"
+import StickyHeader from "@/components/header/sticky-header"
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ferrastudio.com"),
@@ -81,7 +82,8 @@ export default function RootLayout({
 					}}
 				/>
 				<CookieConsent />
-				<MinHeader />
+				{/* <MinHeader /> */}
+				<StickyHeader />
 				<Preloader />
 				{children}
 				<Footer />

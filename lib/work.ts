@@ -1,4 +1,4 @@
-export const projectz = [
+export const work = [
     {
     name: "LÉON",
     description:
