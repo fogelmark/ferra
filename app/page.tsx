@@ -14,14 +14,12 @@ export default function Home() {
 
 	useEffect(() => {
 		if (!hasPlayed) {
-			setShowPreloader(true)
 			const timer = setTimeout(() => {
 				setShowPreloader(false)
 				setHasPlayed(true)
 			}, 2200)
+
 			return () => clearTimeout(timer)
-		} else {
-			setShowPreloader(false)
 		}
 	}, [hasPlayed, setHasPlayed])
 

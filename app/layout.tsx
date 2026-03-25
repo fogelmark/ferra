@@ -1,15 +1,13 @@
 import "./globals.css"
 import { GA_ID, gtagConsentDefault, gtagInit } from "@/lib/google-analytics"
 import { inter } from "@/lib/fonts"
-import { MinHeader } from "@/components/header/min-header"
 import { organizationSchema } from "@/lib/structured-data"
+import { PreloaderProvider } from "@/context/preloader-context"
 import CookieConsent from "@/components/modals/cookie-consent"
 import Footer from "@/components/footer/footer"
-import Preloader from "@/components/preloader/preloader"
 import Script from "next/script"
-import type { Metadata } from "next"
 import StickyHeader from "@/components/header/sticky-header"
-import { PreloaderProvider } from "@/context/preloader-context"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://ferrastudio.com"),
