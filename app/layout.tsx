@@ -1,12 +1,12 @@
 import "./globals.css"
 import { GA_ID, gtagConsentDefault, gtagInit } from "@/lib/google-analytics"
 import { inter } from "@/lib/fonts"
-import { MinHeader } from "@/components/header/min-header"
 import { organizationSchema } from "@/lib/structured-data"
+import { PreloaderProvider } from "@/context/preloader-context"
 import CookieConsent from "@/components/modals/cookie-consent"
 import Footer from "@/components/footer/footer"
-import Preloader from "@/components/preloader/preloader"
 import Script from "next/script"
+import StickyHeader from "@/components/header/sticky-header"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -58,7 +58,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${inter.className} antialiased selection:text-red-secondary selection:bg-black`}>
+			<body
+				className={`${inter.className} selection:text-red-secondary antialiased selection:bg-black`}
+			>
 				<Script id="gtag-consent-default" strategy="beforeInteractive">
 					{gtagConsentDefault}
 				</Script>
@@ -81,9 +83,8 @@ export default function RootLayout({
 					}}
 				/>
 				<CookieConsent />
-				<MinHeader />
-				<Preloader />
-				{children}
+				<StickyHeader />
+				<PreloaderProvider>{children}</PreloaderProvider>
 				<Footer />
 			</body>
 		</html>
