@@ -2,11 +2,24 @@
 
 import { leaguegothic } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { motion, useTransform, useScroll } from "motion/react"
-import { useRef } from "react"
+import { motion, useTransform, useScroll, useReducedMotion } from "motion/react"
+import { useRef, useEffect, useState } from "react"
 
 export default function Footer() {
 	const containerRef = useRef<HTMLDivElement>(null)
+	const prefersReducedMotion = useReducedMotion()
+	const [isMobile, setIsMobile] = useState(false)
+
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth < 768)
+		}
+
+		checkMobile()
+		window.addEventListener("resize", checkMobile)
+
+		return () => window.removeEventListener("resize", checkMobile)
+	}, [])
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
@@ -17,7 +30,11 @@ export default function Footer() {
 		window.scrollTo({ top: 0, behavior: "smooth" })
 	}
 
-	const y = useTransform(scrollYProgress, [0, 1], ["300px", "0px"])
+	const y = useTransform(
+		scrollYProgress,
+		[0, 1],
+		prefersReducedMotion || isMobile ? ["0px", "0px"] : ["300px", "0px"]
+	)
 
 	return (
 		<div
