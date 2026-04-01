@@ -39,8 +39,8 @@ export default function Home() {
 		<div className="bg-[#f5f4f2]">
 			{showPreloader && <Preloader />}
 			<Hero animateText={showPreloader} />
-			<Intro />
 			<Section />
+			<Intro />
 			<StickyService />
 		</div>
 	)

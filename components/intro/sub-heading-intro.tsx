@@ -1,9 +1,15 @@
 import * as motion from "motion/react-client"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useInView, Variants } from "motion/react"
 
 export default function SubHeadingIntro() {
 	const ref = useRef<HTMLDivElement>(null)
+	const [isMobile] = useState(() => {
+		if (typeof window !== 'undefined') {
+			return window.innerWidth < 768
+		}
+		return false
+	})
 
 	const isInView = useInView(ref, {
 		once: true,
@@ -22,19 +28,21 @@ export default function SubHeadingIntro() {
 		}),
 	}
 
+	const lines = isMobile ? subheadingMobile : subheading
+
 	return (
 		<div
 			ref={ref}
-			className="md:col-span-4 col-span-12 self-end col-start-1 md:row-span-2 md:row-start-4 row-start-1"
+			className="md:col-span-4 col-span-12 md:self-end col-start-1 md:row-span-2 md:row-start-4 row-start-1"
 		>
-			{subheading.map((line, i) => (
+			{lines.map((line, i) => (
 				<div className="min-h-[1em] overflow-hidden" key={i}>
 					<motion.p
 						variants={maskAnimation}
 						initial="initial"
 						animate={isInView ? "animate" : "initial"}
 						custom={i}
-						className="md:text-lg text-sm will-change-transform"
+						className="text-lg will-change-transform"
 					>
 						{line}
 					</motion.p>
@@ -49,4 +57,13 @@ const subheading = [
 	"websites. We craft high-end digital touchpoints for",
 	"those who value precision, aesthetics, and",
 	"seamless user experiences across all platforms.",
+]
+
+const subheadingMobile = [
+	"Specializing in brand identity, motion",
+	"design, and websites. We craft high-",
+	"end digital touchpoints for those who",
+	"value precision, aesthetics, and",
+	"seamless user experiences across all",
+	"platforms.",
 ]

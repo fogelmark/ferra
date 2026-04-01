@@ -1,0 +1,107 @@
+# Ferra Studio - Project Rules
+
+## Tech Stack
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS v4 with custom theme
+- **Animation**: Motion (Framer Motion)
+- **Font Strategy**: Next.js font optimization (Inter, local fonts)
+
+## Code Style & Formatting
+- **Indentation**: Tabs (4-space width)
+- **Semicolons**: None
+- **Quotes**: Double quotes for strings
+- **Plugin**: prettier-plugin-tailwindcss for class sorting
+
+## File Structure & Naming Conventions
+- **Components**: kebab-case filenames (e.g., `sticky-header.tsx`, `button-flip.tsx`)
+- **Pages**: Next.js App Router convention (`page.tsx`, `layout.tsx`)
+- **Utilities**: Single-purpose files in `/lib` (e.g., `utils.ts`, `fonts.ts`)
+- **Types**: TypeScript interfaces defined inline or in `/types`
+
+## Component Architecture
+- **Client Components**: Mark with `"use client"` directive at top
+- **Default Exports**: Use for page and component files
+- **Named Exports**: Use for utilities and constants
+- **Props Interfaces**: Define inline above component, use PascalCase naming
+
+## Import Organization
+1. React/Next.js core imports
+2. Third-party libraries
+3. Local utilities (`@/lib/*`)
+4. Local components (`@/components/*`)
+5. Assets and styles
+
+## Path Aliases
+- Use `@/*` for all absolute imports from project root
+- Example: `@/lib/utils`, `@/components/hero`
+
+## Component Patterns
+- **Animation**: Use Motion (motion/react) for animations with `useScroll`, `useTransform`, `motion` components
+- **Styling**:
+  - Use `cn()` utility from `@/lib/utils` for conditional classes
+  - Tailwind classes directly in className
+  - Custom colors defined in globals.css `@theme` section
+- **Refs**: Use `useRef<HTMLDivElement>(null)` for DOM references
+- **Responsive**: Mobile-first approach, use `md:` prefix for desktop breakpoints
+
+## Naming Conventions
+- **Components**: PascalCase (e.g., `Hero`, `StickyHeader`, `ButtonFlip`)
+- **Props Interfaces**: ComponentNameProps (e.g., `HeroProps`, `ButtonProps`)
+- **Constants**: SCREAMING_SNAKE_CASE for data arrays (e.g., `SERVICES_DATA`)
+- **Functions**: camelCase (e.g., `handleHover`, `gtagInit`)
+- **CSS Custom Properties**: kebab-case with double dash prefix (e.g., `--color-red-primary`)
+
+## Animation Standards
+- Use scroll-based animations with `useScroll` hook
+- Define animation variants for reusable animations
+- Use cubic-bezier easing: `[0.16, 1, 0.3, 1]` for smooth entrances
+- Implement `whileInView` for viewport-triggered animations
+- Use `will-change-transform` for performance optimization
+
+## Color System
+- Primary colors use oklch color space
+- Custom color names: `bone-white`, `ash-gray`, `red-primary`, `red-secondary`
+- Apply via Tailwind: `text-bone-white`, `bg-ash-gray`
+
+## TypeScript Guidelines
+- Enable strict mode
+- Define explicit return types for exported functions
+- Use type imports: `import type { Metadata } from "next"`
+- Avoid `any` types
+
+## SEO & Metadata
+- Define comprehensive metadata in layout files
+- Include OpenGraph and Twitter card metadata
+- Use structured data (JSON-LD) for organization schema
+- Implement sitemap.ts and robots.ts in app directory
+
+## Performance Considerations
+- Use Next.js Image component for all images
+- Implement lazy loading for below-fold content
+- Use `will-change-transform` for animated elements
+- Optimize fonts with next/font loader
+
+## Accessibility
+- Use semantic HTML elements
+- Include ARIA labels where necessary
+- Ensure keyboard navigation support
+- Maintain focus states with `focus-visible:` variants
+
+## Code Quality
+- ESLint configured via eslint.config.mjs
+- Suppress linting only when necessary with `/* eslint-disable */`
+- Keep components focused and single-purpose
+- Extract reusable logic to `/lib` utilities
+
+## Git Commit Style
+Based on recent commits:
+- Use concise, imperative mood messages
+- Reference issue numbers with # notation
+- Examples: "Added projects page", "Fixed sticky-services alignment"
+
+## Development Commands
+- `npm run dev` - Start development server
+- `npm run build` - Production build
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint

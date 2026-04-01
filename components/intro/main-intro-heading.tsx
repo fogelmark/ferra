@@ -1,10 +1,16 @@
 import * as motion from "motion/react-client"
 import { cn } from "@/lib/utils"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import { useInView, Variants } from "motion/react"
 
 export default function MainIntroHeading() {
 	const ref = useRef<HTMLDivElement>(null)
+	const [isMobile] = useState(() => {
+		if (typeof window !== 'undefined') {
+			return window.innerWidth < 768
+		}
+		return false
+	})
 
 	const isInView = useInView(ref, {
 		once: true,
@@ -24,12 +30,14 @@ export default function MainIntroHeading() {
 		}),
 	}
 
+	const lines = isMobile ? headingMobile : heading
+
 	return (
 		<div
 			ref={ref}
-			className="col-span-12 col-start-1 md:row-span-5 grid-rows-[min-content_min-content] row-start-2 md:row-start-7 md:text-right text-xl md:text-7xl"
+			className="col-span-12 col-start-1 md:row-span-5 grid-rows-[min-content_min-content] row-start-2 md:row-start-7 md:text-right text-2xl md:text-7xl"
 		>
-			{heading.map((line, i) => (
+			{lines.map((line, i) => (
 				<div key={i} className="min-h-[1em] overflow-hidden md:leading-14">
 					<motion.h2
 						variants={maskAnimation}
@@ -37,7 +45,7 @@ export default function MainIntroHeading() {
 						animate={isInView ? "animate" : "initial"}
 						custom={i}
 						className={cn("will-change-transform", {
-							"indent-[35vw]": i === 0,
+							"md:indent-[35vw]": i === 0,
 						})}
 					>
 						{line}
@@ -53,4 +61,12 @@ const heading = [
 	"creative studio, shaping the visual",
 	"identity of the music industry and",
 	"visionary brands through bold design.",
+]
+
+const headingMobile = [
+	"A Stockholm based creative",
+	"studio, shaping the visual",
+	"identity of the music industry",
+	"and visionary brands through",
+	"bold design.",
 ]

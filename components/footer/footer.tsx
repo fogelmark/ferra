@@ -2,76 +2,66 @@
 
 import { leaguegothic } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { motion, useTransform, useScroll } from "motion/react"
-import { useRef } from "react"
+import { motion, useTransform, useScroll, useReducedMotion } from "motion/react"
+import { useRef, useEffect, useState } from "react"
 
 export default function Footer() {
 	const containerRef = useRef<HTMLDivElement>(null)
+	const prefersReducedMotion = useReducedMotion()
+	const [isMobile, setIsMobile] = useState(false)
+
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth < 768)
+		}
+
+		checkMobile()
+		window.addEventListener("resize", checkMobile)
+
+		return () => window.removeEventListener("resize", checkMobile)
+	}, [])
 
 	const { scrollYProgress } = useScroll({
 		target: containerRef,
 		offset: ["start end", "end end"],
 	})
 
-	const scrollToTop = () => {
-		window.scrollTo({ top: 0, behavior: "smooth" })
-	}
-
-	const y = useTransform(scrollYProgress, [0, 1], ["300px", "0px"])
+	const y = useTransform(
+		scrollYProgress,
+		[0, 1],
+		prefersReducedMotion || isMobile ? ["0px", "0px"] : ["300px", "0px"]
+	)
 
 	return (
 		<div
 			ref={containerRef}
-			className="bg-footer-gray relative h-screen"
+			className="bg-footer-gray relative h-[50vh] md:h-screen py-8 md:py-0"
 			style={{
 				clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
 			}}
 		>
-			<div className="relative -top-[100vh] h-[200vh]">
-				<div className="sticky top-0 h-screen overflow-hidden">
+			<div className="relative md:-top-[100vh] md:h-[200vh]">
+				<div className="md:sticky md:top-0 h-auto md:h-screen md:overflow-hidden">
 					<motion.div
 						style={{ y }}
-						className="relative grid h-full w-full grid-cols-12 px-4 py-4"
+						className="relative flex flex-col gap-18 justify-between h-full w-full px-4 md:py-4"
 					>
 						<motion.h1
 							className={cn(
-								"text-ash-gray text-center text-[25.5vw] leading-[80%] whitespace-nowrap uppercase select-none max-sm:hidden",
+								"text-ash-gray text-center text-[23vw] md:text-[25.5vw] leading-[82%] whitespace-nowrap uppercase select-none",
 								leaguegothic.className,
 							)}
 						>
 							ferra studio
 						</motion.h1>
-						<div className="text-ash-gray col-span-12 md:hidden">
-							<motion.h1
-								className={cn(
-									"text-center text-[50vw] leading-[80%] whitespace-nowrap uppercase select-none",
-									leaguegothic.className,
-								)}
+						<div className="flex flex-col md:flex-row justify-between items-center max-sm:gap-2 text-sm text-[#8c8c8c]">
+							<a
+								href="mailto:hello@ferrastudio.com"
+								className="hover:text-ash-gray transition-colors"
 							>
-								ferra
-							</motion.h1>
-							<motion.h1
-								className={cn(
-									"text-center text-[45vw] leading-[80%] whitespace-nowrap uppercase select-none",
-									leaguegothic.className,
-								)}
-							>
-								studio
-							</motion.h1>
-						</div>
-						<div className="h-min-content col-span-12 flex flex-col items-center justify-end gap-3 text-sm text-[#8c8c8c] md:flex-row md:items-end md:justify-between">
+								hello@ferrastudio.com
+							</a>
 							<p className="uppercase">© 2026 Ferra Studio</p>
-							<p>
-								<a href="mailto:hello@ferrastudio.com">
-									hello@ferrastudio.com
-								</a>
-							</p>
-							<p
-								className="cursor-pointer uppercase"
-								onClick={scrollToTop}
-							>
-								Back to top
-							</p>
 						</div>
 					</motion.div>
 				</div>
