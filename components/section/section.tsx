@@ -40,13 +40,13 @@ export default function Section() {
 	return (
 		<div
 			ref={containerRef}
-			className="relative w-full bg-ash-gray grid h-[120vh] grid-cols-12 grid-rows-12"
+			className="relative w-full bg-ash-gray flex flex-col justify-center max-sm:gap-10 h-screen md:grid md:h-[120vh] grid-cols-12 grid-rows-12"
 		>
 			<motion.div
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
 				transition={{ duration: 1, delay: 3 }}
-				className="text-red-secondary z-10 col-start-1 leading-15 text-[60px] row-span-4 row-start-2 md:row-start-4 flex h-full col-span-12 flex-col justify-center gap-1 p-4 md:text-[120px] md:leading-25 font-semibold tracking-tighter uppercase"
+				className="text-red-secondary max-sm:text-center z-10 col-start-1 leading-15 text-[60px] row-span-4 row-start-2 md:row-start-4 flex col-span-12 flex-col justify-center gap-1 p-4 md:text-[120px] md:leading-25 font-semibold tracking-tighter uppercase"
 			>
 				<h2>own</h2>
 				<h2>your</h2>
