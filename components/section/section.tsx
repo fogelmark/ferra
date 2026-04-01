@@ -17,7 +17,7 @@ const curtain: Variants = {
     transition: {
       duration: 1.5,
       ease: [0.32, 0.72, 0, 1],
-      delay: 2.1,
+      delay: 1.8,
     },
   },
 }
