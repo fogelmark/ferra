@@ -1,14 +1,15 @@
 import * as motion from "motion/react-client"
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState } from "react"
 import { useInView, Variants } from "motion/react"
 
 export default function SubHeadingIntro() {
 	const ref = useRef<HTMLDivElement>(null)
-	const [isMobile, setIsMobile] = useState(false)
-
-	useEffect(() => {
-		setIsMobile(window.innerWidth < 768)
-	}, [])
+	const [isMobile] = useState(() => {
+		if (typeof window !== 'undefined') {
+			return window.innerWidth < 768
+		}
+		return false
+	})
 
 	const isInView = useInView(ref, {
 		once: true,

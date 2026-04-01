@@ -65,7 +65,7 @@ export default function Hero({ animateText = false }: HeroProps) {
 				/>
 			<div className="relative max-sm:text-center z-10 col-span-4 md:self-start will-change-transform md:col-span-2 md:col-start-3">
 				<motion.div
-					style={{ y: headingTwo }}
+					// style={{ y: headingTwo }}
 					initial={animateText ? { opacity: 0, y: "-100%" } : false}
 					animate={animateText ? { opacity: 1, y: 0 } : false}
 					transition={
