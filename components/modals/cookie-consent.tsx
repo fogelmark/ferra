@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react"
-import { usePathname, useSearchParams } from "next/navigation"
+import { usePathname } from "next/navigation"
 import ButtonConsent from "../buttons/button-consent"
 import {
 	gtagConsentDenyAll,
@@ -28,12 +28,11 @@ export default function CookieConsent() {
 
 	const [choice, setChoice] = useState<ConsentChoice>(() => readConsent())
 	const pathname = usePathname()
-	const searchParams = useSearchParams()
 
 	const url = useMemo(() => {
-		const query = searchParams.toString()
-		return query ? `${pathname}?${query}` : pathname
-	}, [pathname, searchParams])
+		if (typeof window === "undefined") return pathname
+		return `${pathname}${window.location.search || ""}`
+	}, [pathname])
 
 	useEffect(() => {
 		if (!isClient) return
