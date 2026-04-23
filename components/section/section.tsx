@@ -40,7 +40,7 @@ export default function Section() {
 	return (
 		<div
 			ref={containerRef}
-			className="relative w-full bg-ash-gray flex flex-col justify-center max-sm:gap-10 h-screen md:grid md:h-[120vh] grid-cols-12 grid-rows-12"
+			className="relative w-full bg-ash-gray py-20 flex flex-col justify-center max-sm:gap-10 h-screen md:grid md:h-[120vh] grid-cols-12 grid-rows-12"
 		>
 			<motion.div
 				initial={{ opacity: 0 }}
