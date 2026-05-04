@@ -34,7 +34,7 @@ export default function StickyHeader() {
 			}}
 			animate={hidden ? "hidden" : "visible"}
 			transition={{ duration: 0.3, ease: "easeOut" }}
-			className="bg-background/70 fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg border border-white/5 text-white shadow-md backdrop-blur-md md:w-fit"
+			className="bg-black/70 fixed bottom-4 left-1/2 z-50 w-[calc(100%-2rem)] -translate-x-1/2 rounded-lg border border-white/5 text-white shadow-md backdrop-blur-md md:w-fit"
 		>
 			<nav className="flex items-center gap-4 px-6 py-3">
 				<Link href="/" className="flex shrink-0 items-center">
